@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="lab-feedback" class="ro.unibuc.lab01.xml.demo.model.Feedback">
+        <constructor-arg name="from" value="John" />
+        <constructor-arg name="to" value="Ionică" />
+        <constructor-arg name="text" value="What happened?" />
+    </bean>
+
+    <bean id="lab-review" class="ro.unibuc.lab01.xml.demo.model.LabReview">
+        <property name="feedback" ref="lab-feedback"/>
+        <property name="teacher" value="Floarea" />
+        <property name="rating" value="5" />
+    </bean>
+
+</beans>
