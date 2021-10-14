@@ -1,7 +1,7 @@
 # UniLab-2021
 UniBuc lab material
 
-## Prequisites
+## Prerequisites
 - Java - available from [Adoptium](https://adoptium.net/) or [dev.java](https://dev.java/)
 - [Maven](https://maven.apache.org/download.cgi?Preferred=ftp://ftp.osuosl.org/pub/apache/)
 - IDE of your choice
