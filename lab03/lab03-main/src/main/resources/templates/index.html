@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fancy Restaurant</title>
+    </head>
+
+    <body>
+        <h1>Fancy Restaurant</h1>
+        <div>
+            <form method="post">
+                <label for="dishName">Name:</label><input type="text" id="dishName" name="name" />
+                <label for="price">Price:</label><input type="text" id="price" name="price" />
+                <input type="submit" value="Add" />
+            </form>
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price (RON)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="dish: ${dishList}">
+                        <td th:text="${dish.name}"></td>
+                        <td th:text="${dish.price}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
