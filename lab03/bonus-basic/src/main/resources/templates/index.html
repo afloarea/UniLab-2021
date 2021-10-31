@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant</title>
+    <style>
+  div, h1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+  }
+
+  th, td {
+    padding: 10px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #D6EEEE;
+  }
+
+  input {
+    margin: 0 5px;
+  }
+
+
+    </style>
+</head>
+<body>
+<h1>
+    Fancy Restaurant
+</h1>
+<div>
+    <form method="post">
+        <label for="dish-name">Dish Name:</label><input type="text" id="dish-name" name="name"/>
+        <label for="dish-price">Dish Price:</label><input type="text" id="dish-price" name="price"/>
+        <input type="submit" value="Add"/>
+    </form>
+</div>
+<div>
+    <table style="width:33%">
+        <tr>
+            <th>Name</th>
+            <th>Price (RON)</th>
+        </tr>
+        <table-content/>
+    </table>
+</div>
+</body>
+</html>
