@@ -1,0 +1,6 @@
+server:
+  port: 8080
+
+url:
+  extractor: "http://localhost:8081"
+  registry:  "http://localhost:8082"
