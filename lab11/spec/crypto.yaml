@@ -1,0 +1,128 @@
+openapi: 3.0.0
+info:
+  title: crypto
+  version: '1.0'
+paths:
+  /coins:
+    post:
+      summary: Add Crypto Coin
+      operationId: add-coin
+      responses:
+        '204':
+          description: No Content
+      description: Add a new crypto coin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: BTC
+                  pattern: '^[A-Z]{3}$'
+                  description: The coin identifier
+                name:
+                  type: string
+                  example: Bitcoin
+                  minLength: 3
+                  description: The coin name
+                type:
+                  type: string
+                  enum:
+                    - ProofOfWork
+                    - ProofOfStake
+                  example: ProofOfWork
+              required:
+                - id
+                - name
+        description: Crypto coin details
+  '/transactions/{transactionId}':
+    parameters:
+      - schema:
+          type: string
+        name: transactionId
+        in: path
+        description: the transaction id
+        required: true
+    get:
+      summary: Get transaction details
+      operationId: get-transaction
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      transactionId:
+                        type: string
+                        format: uuid
+                        description: the transaction id
+                    required:
+                      - transactionId
+                  - $ref: '#/components/schemas/TransactionDetails'
+        '404':
+          description: Not Found
+      description: Get transaction details
+  /transactions:
+    post:
+      summary: Add transaction
+      operationId: add-transaction
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transactionId:
+                    type: string
+                    format: uuid
+                    description: the transaction id
+                required:
+                  - transactionId
+      description: Add a new transaction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionDetails'
+components:
+  schemas:
+    TransactionDetails:
+      title: TransactionDetails
+      type: object
+      properties:
+        sourceWallet:
+          type: string
+          format: uuid
+          description: the wallet sending the amount
+        targetWallet:
+          type: string
+          format: uuid
+          description: the wallet receiving the amount
+        amount:
+          type: number
+          minimum: 0
+          exclusiveMinimum: true
+          multipleOf: 0.01
+          description: the transaction amount
+        dateTime:
+          type: string
+          format: date-time
+          description: the UTC ISO date-time
+        coin:
+          type: string
+          example: BTC
+          pattern: '^[A-Z]{3}$'
+          description: The coin identifier
+      required:
+        - sourceWallet
+        - targetWallet
+        - amount
+        - dateTime
+        - coin
