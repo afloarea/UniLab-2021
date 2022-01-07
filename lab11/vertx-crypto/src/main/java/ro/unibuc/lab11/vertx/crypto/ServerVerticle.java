@@ -18,7 +18,7 @@ public final class ServerVerticle extends AbstractVerticle {
     // run with 'mvn package exec:java'
     @Override
     public void start(Promise<Void> startPromise) {
-        RouterBuilder.create(vertx, "/home/afloarea/Repositories/UniLab-2021/lab11/spec/crypto.yaml")
+        RouterBuilder.create(vertx, "https://raw.githubusercontent.com/afloarea/UniLab-2021/master/lab11/spec/crypto.yaml")
                 .map(this::createRouter)
                 .compose(router -> vertx.createHttpServer().requestHandler(router).listen(8080))
                 .<Void>mapEmpty()
